@@ -2,6 +2,8 @@
 
 A real-time stock market dashboard built with **Flask**, **yFinance**, and **Matplotlib** that displays key financial data and visual insights for publicly traded companies.
 
+🔗 **[Live Demo](https://stolker.onrender.com/)**
+
 ---
 
 ## 🚀 Features
