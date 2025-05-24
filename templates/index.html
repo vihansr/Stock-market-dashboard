@@ -1,12 +1,12 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 {% block title %} Stolker {% endblock %}
 {% block content %}
-<div class="gap"></div>
-<main>
-    <h1>Stolker</h1>
-    <form method="POST" action="{{url_for('index')}}">
-    <input id="stock_symbol" name="stock_symbol" type="text" placeholder="eg. AAPL, NVDA, INFY...">
-    </form>
-    <h2 class="info">Your ultimate stock market dashboard and community for market analysis.</h2>
+<main class="main-container center-content">
+  <h1 class="title">Welcome to Stolker</h1>
+  <p class="subtitle">Your ultimate stock market dashboard and community for market analysis.</p>
+  <form method="POST" action="{{ url_for('index') }}" class="form">
+    <input id="stock_symbol" name="stock_symbol" type="text" class="input" placeholder="e.g., AAPL, NVDA, INFY...">
+    <button type="submit" class="button">Search</button>
+  </form>
 </main>
 {% endblock %}

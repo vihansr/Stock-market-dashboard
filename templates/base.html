@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-  <title>{%block title%}Title{%endblock%}</title>
-  <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stock Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<header>
-    <p class="heading"><b>Your All-In-One Stock Market Dashboard!</b></p>
-</header>
-{% block content %}
-        {% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <div class="wrapper">
+        <header class="navbar">
+            <div class="navbar-brand">📊 Stolker</div>
+            <div class="navbar-text">Your All-In-One Stock Market Dashboard</div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-container">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+
+            <div class="symbol-help">
+                Don’t know the stock symbol? <a href="https://stockanalysis.com/stocks/" target="_blank">Click here to find it</a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            &copy; 2025 Stolker. All rights reserved.
+        </footer>
+    </div>
 </body>
 </html>

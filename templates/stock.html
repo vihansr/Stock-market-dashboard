@@ -1,76 +1,72 @@
 {% extends "base.html" %}
 {% block title %}{{ info['longName'] }} - Dashboard{% endblock %}
 {% block content %}
-
-<div class="content">
-    <div class="stock-header">
-        <div class="name-section">
-            <h1>{{ info['longName'] }}</h1>
-            <p><strong>Current Price:</strong> ${{ info['currentPrice'] }}</p>
-        </div>
-        <div class="link-section">
-            <a href="{{ info['website'] }}" target="_blank" class="btn-link">Visit Website</a>
-        </div>
+<div class="dashboard-container">
+  <div class="stock-header">
+    <div class="name-section">
+      <h1>{{ info['longName'] }}</h1>
+      <p><strong>Current Price:</strong> ${{ info['currentPrice'] }}</p>
     </div>
+    <a href="{{ info['website'] }}" target="_blank" class="button-link">Visit Website</a>
+  </div>
 
-    <div class="summary">
-        <p>{{ info['longBusinessSummary'][:500] }}...</p>
+  <div class="summary">
+    <h2>Company Summary</h2>
+    <p>{{ info['longBusinessSummary'][:500] }}...</p>
+  </div>
+
+  <div class="table-section">
+    <h2>Key Statistics</h2>
+    <div class="table-scroll">
+      <table class="styled-table">
+        <tr>
+          <th>Sector</th><td>{{ info['sector'] }}</td>
+          <th>Market Cap </th><td>${{ '{:,}'.format(info['marketCap']) }}</td>
+        </tr>
+        <tr>
+          <th>Avg Volume</th><td>{{ '{:,}'.format(info['averageVolume']) }}</td>
+          <th>Price to Book</th><td>{{ info['priceToBook'] }}</td>
+        </tr>
+        <tr>
+          <th>Day High</th><td>${{ info['dayHigh'] }}</td>
+          <th>Day Low</th><td>${{ info['dayLow'] }}</td>
+        </tr>
+        <tr>
+          <th>Payout Ratio</th><td>{{ info['payoutRatio'] }}</td>
+          <th>Trailing P/E</th><td>{{ info['trailingPE'] }}</td>
+        </tr>
+        <tr>
+          <th>Debt To Equity</th><td>{{ info['debtToEquity'] }}</td>
+          <th>Total Revenue</th><td>${{ '{:,}'.format(info['totalRevenue']) if info['totalRevenue'] else 'N/A' }}</td>
+        </tr>
+        <tr>
+          <th>Beta</th><td>{{ info['beta'] }}</td>
+          <th>Forward P/E</th><td>{{ info['forwardPE'] }}</td>
+        </tr>
+      </table>
     </div>
+  </div>
 
-    <div class="table-section">
-        <table class="styled-table">
-            <tr>
-                <td>Sector</td>
-                <td>{{ info['sector'] }}</td>
-                <td>Market Cap</td>
-                <td>{{ info['marketCap'] }} Cr</td>
-            </tr>
-            <tr>
-                <td>Avg Volume</td>
-                <td>{{ info['averageVolume'] }}</td>
-                <td>Price to Book</td>
-                <td>{{ info['priceToBook'] }}</td>
-            </tr>
-            <tr>
-                <td>Day High</td>
-                <td>{{ info['dayHigh'] }}</td>
-                <td>Day Low</td>
-                <td>{{ info['dayLow'] }}</td>
-            </tr>
-            <tr>
-                <td>Payout Ratio</td>
-                <td>{{ info['payoutRatio'] }}</td>
-                <td>Trailing P/E</td>
-                <td>{{ info['trailingPE'] }}</td>
-            </tr>
-            <tr>
-                <td>Debt To Equity</td>
-                <td>{{ info['debtToEquity'] }}</td>
-                <td>Total Revenue</td>
-                <td>{{ '{:,}'.format(info['totalRevenue']) if info['totalRevenue'] else 'N/A' }}</td>
-            </tr>
-            <tr>
-                <td>Beta</td>
-                <td>{{ info['beta'] }}</td>
-                <td>Forward P/E</td>
-                <td>{{ info['forwardPE'] }}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="chart-section">
-        <h2>Stock Price Chart</h2>
+  <div class="chart-section">
+    <h2>Financial Charts</h2>
+    <div class="chart-grid">
+      <div>
+        <h3>Stock Price</h3>
         <img src="{{ url_for('static', filename=chart_file) }}" alt="Stock Chart">
-
-        <h2>Cash Flow Chart</h2>
+      </div>
+      <div>
+        <h3>Cash Flow</h3>
         <img src="{{ url_for('static', filename=cashflow_chart) }}" alt="Cash Flow Chart">
-
-        <h2>Financials Chart</h2>
+      </div>
+      <div>
+        <h3>Financials</h3>
         <img src="{{ url_for('static', filename=financials_chart) }}" alt="Financial Chart">
-
-        <h2>Balance Sheet Chart</h2>
+      </div>
+      <div>
+        <h3>Balance Sheet</h3>
         <img src="{{ url_for('static', filename=balance_sheet_chart) }}" alt="Balance Sheet Chart">
+      </div>
     </div>
+  </div>
 </div>
-
 {% endblock %}
