@@ -87,15 +87,7 @@ from selenium.webdriver.chrome.options import Options
 
 class NewsScraper:
     def __init__(self):
-        chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        # chrome_options.add_argument("--no-sandbox")
-        # chrome_options.add_argument("--disable-dev-shm-usage")
-        # chrome_options.add_argument("--disable-gpu")
-        # chrome_options.add_argument("--window-size=1920x1080")
-        # chrome_options.add_argument("--user-data-dir=/tmp/unique-profile")
-
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome()
         self.overall_news = {}
 
     def fetch_moneycontrol(self):
