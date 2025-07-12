@@ -93,6 +93,7 @@ class NewsScraper:
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--window-size=1920x1080")
+        chrome_options.add_argument("--user-data-dir=/tmp/unique-profile")
 
         self.driver = webdriver.Chrome(options=chrome_options)
         self.overall_news = {}  # Use dict instead of list
