@@ -8,5 +8,14 @@
     <input id="stock_symbol" name="stock_symbol" type="text" class="input" placeholder="e.g., AAPL, NVDA, INFY...">
     <button type="submit" class="button">Search</button>
   </form>
+  <!-- News Headlines Section -->
+  <section class="news-section">
+    <h2 class="news-title">📈 Latest Market News</h2>
+    <div class="news-list">
+      {% for headline, source in headlines.items() %}
+  <div class="headline">{{ headline }} <span class="source">| {{ source }}</span></div>
+{% endfor %}
+    </div>
+  </section>
 </main>
 {% endblock %}

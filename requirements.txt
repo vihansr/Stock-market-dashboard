@@ -3,3 +3,6 @@ pandas
 yfinance
 matplotlib
 gunicorn
+selenium
+requests
+bs4

@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from Stock_details import StockDetails
+from news import NewsScraper
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    scraper = NewsScraper()
+    headlines = scraper.get_all_news()
     if request.method == "POST":
         symbol = request.form.get('stock_symbol', '').strip().upper()
 
@@ -15,7 +18,7 @@ def index():
 
         return redirect(url_for('stock', stock_symbol=symbol))
 
-    return render_template("index.html")
+    return render_template("index.html", headlines = headlines)
 
 
 @app.route("/stocks/<stock_symbol>")
